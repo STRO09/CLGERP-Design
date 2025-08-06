@@ -9,7 +9,6 @@
     />
 
     <style>
-
       body {
         display: flex;
         flex-direction: column;
@@ -75,19 +74,27 @@
       <!-- ✅ Sidebar -->
       <div class="sidebar d-flex flex-column">
         <hr class="bg-light" />
-        <a style="border: thin solid white"
-          href="#"
-          onclick="showAlert('Attendance: 92%')"
+        <a href="student-dashboard.html" onclick="showAlert('Attendance: 92%')"
           >🏠 Dashboard</a
         >
-        <a href="attendance-student.html" onclick="showAlert('Attendance: 92%')">📊 Attendance</a>
-        <a href="announcements-student.html" onclick="showAlert('No new announcements.')"
+        <a href="attendance-student.html" onclick="showAlert('Attendance: 92%')"
+          >📊 Attendance</a
+        >
+        <a
+          href="announcements-student.html
+        "
+          onclick="showAlert('No new announcements.')"
           >📢 Announcements</a
         >
-        <a href="timetable-student.html" onclick="showAlert('Monday: Math, Tuesday: Physics...')"
+        <a
+          href="timetable-student.html"
+          onclick="showAlert('Monday: Math, Tuesday: Physics...')"
           >📅 Timetable</a
         >
-        <a href="results-student.html" onclick="showAlert('Results: Math: 85, Physics: 90')"
+        <a
+          style="border: thin solid white"
+          href="#"
+          onclick="showAlert('Results: Math: 85, Physics: 90')"
           >📜 Results</a
         >
 

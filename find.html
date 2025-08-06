@@ -10,11 +10,11 @@
   </head>
   <body class="bg-light">
     <div class="container mt-5">
-      <h2 class="mb-4 text-center">Find Your Details</h2>
+      <h2 class="mb-5 text-center" style="font-weight: bolder;">Find Your Details</h2>
       <form id="findForm" class="mx-auto" style="max-width: 400px">
-        <label for="role" class="form-label">Role</label>
         <div class="mb-3">
-          <div class="form-check form-check-inline">
+          <label for="role" class="form-label">Role</label>
+          <div class="form-check form-check-inline mx-5">
             <input
               class="form-check-input"
               type="radio"
@@ -35,7 +35,13 @@
         </div>
         <div class="mb-3">
           <label for="name" class="form-label">Name</label>
-          <input type="text" class="form-control" id="name" required />
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            placeholder="John Doe"
+            required
+          />
         </div>
         <div class="mb-3">
           <label for="number" class="form-label">Number</label>
@@ -44,12 +50,19 @@
             class="form-control"
             id="number"
             pattern="\d+"
+            placeholder="00-0000-0000"
             required
           />
         </div>
         <div class="mb-3">
           <label for="email" class="form-label">Email</label>
-          <input type="email" class="form-control" id="email" required />
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            placeholder="JohnDoe@gmail.com"
+            required
+          />
         </div>
 
         <button type="submit" class="btn btn-primary w-100">Search</button>
@@ -59,7 +72,8 @@
         <a href="index.html" class="btn btn-link">Back to Home</a>
       </div>
     </div>
-    <script>
+
+        <script>
       // Simulated DB (for demo)
       const users = [
         {

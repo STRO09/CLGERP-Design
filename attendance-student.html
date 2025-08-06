@@ -9,7 +9,6 @@
     />
 
     <style>
-
       body {
         display: flex;
         flex-direction: column;
@@ -75,12 +74,13 @@
       <!-- ✅ Sidebar -->
       <div class="sidebar d-flex flex-column">
         <hr class="bg-light" />
-        <a style="border: thin solid white"
+        <a href="student-dashboard.html" onclick="showAlert('Attendance: 92%')">🏠 Dashboard</a>
+        <a
           href="#"
+          style="border: thin solid white"
           onclick="showAlert('Attendance: 92%')"
-          >🏠 Dashboard</a
+          >📊 Attendance</a
         >
-        <a href="attendance-student.html" onclick="showAlert('Attendance: 92%')">📊 Attendance</a>
         <a href="announcements-student.html" onclick="showAlert('No new announcements.')"
           >📢 Announcements</a
         >
