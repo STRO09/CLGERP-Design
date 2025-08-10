@@ -8,51 +8,13 @@
       rel="stylesheet"
     />
 
-    <style>
-      body {
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-      }
-      /* Sidebar styling */
-      .sidebar {
-        width: 250px;
-        background: #0c2562;
-        color: #fff;
-      }
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.18/index.global.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.18/index.global.min.css"
+      rel="stylesheet"
+    />
 
-      .sidebar a {
-        color: #fff;
-        text-decoration: none;
-        display: block;
-        font-size: large;
-        margin-right: 4px;
-        padding: 10px 20px;
-      }
-
-      .sidebar a:hover {
-        background: rgba(255, 255, 255, 0.1);
-      }
-
-      .sidebar .logout-btn {
-        margin-top: auto;
-        padding: 10px 20px;
-        text-align: left;
-        width: 100%;
-        color: #fff;
-        border: none;
-        background: transparent;
-      }
-
-      .sidebar .logout-btn:hover {
-        background: rgba(255, 255, 255, 0.1);
-      }
-
-      .sidebar hr {
-        margin-top: 0;
-        margin-bottom: 20px; /* remove gap above/below hr */
-      }
-    </style>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <nav
@@ -74,20 +36,28 @@
       <!-- ✅ Sidebar -->
       <div class="sidebar d-flex flex-column">
         <hr class="bg-light" />
-        <a href="student-dashboard.html" onclick="showAlert('Attendance: 92%')">🏠 Dashboard</a>
+        <a href="student-dashboard.html" onclick="showAlert('Attendance: 92%')"
+          >🏠 Dashboard</a
+        >
         <a
           href="#"
           style="border: thin solid white"
           onclick="showAlert('Attendance: 92%')"
           >📊 Attendance</a
         >
-        <a href="announcements-student.html" onclick="showAlert('No new announcements.')"
+        <a
+          href="announcements-student.html"
+          onclick="showAlert('No new announcements.')"
           >📢 Announcements</a
         >
-        <a href="timetable-student.html" onclick="showAlert('Monday: Math, Tuesday: Physics...')"
+        <a
+          href="timetable-student.html"
+          onclick="showAlert('Monday: Math, Tuesday: Physics...')"
           >📅 Timetable</a
         >
-        <a href="results-student.html" onclick="showAlert('Results: Math: 85, Physics: 90')"
+        <a
+          href="results-student.html"
+          onclick="showAlert('Results: Math: 85, Physics: 90')"
           >📜 Results</a
         >
 
@@ -103,109 +73,181 @@
       </div>
 
       <div class="container mt-4 px-5">
-        <h2 class="mt-2 mb-5 text-center">Student Dashboard</h2>
+        <h2 class="mt-2 mb-5 text-center">Student Attendance</h2>
 
-        <div class="row g-4">
-          <div class="col-md-12 text-center">
-            <div class="card h-100 p-3" style="background-color: #5487b341">
-              <div class="card-body">
-                <h5 class="card-title">Student Name</h5>
-                <p class="card-text">Student info</p>
-                <a
-                  href="#"
-                  class="btn btn-primary"
-                  onclick="showAlert('Attendance: 92%')"
-                  >Edit Info</a
-                >
-              </div>
-            </div>
+        <div id="calendar"></div>
+        <!-- Attendance Sidebar -->
+        <div id="attendanceSidebar">
+          <div class="sidebar-header">
+            <h4 id="sidebarDate">Date</h4>
+            <button id="closeSidebar" class="btn btn-sm btn-light">×</button>
           </div>
-          <div class="col-md-4">
-            <div class="card h-100" style="background-color: #5487b341">
-              <div class="card-body">
-                <h5 class="card-title">Attendance</h5>
-                <p class="card-text">View your attendance record.</p>
-                <a
-                  href="#"
-                  class="btn btn-primary"
-                  onclick="showAlert('Attendance: 92%')"
-                  >View Attendance</a
-                >
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card h-100" style="background-color: #5487b341">
-              <div class="card-body">
-                <h5 class="card-title">Announcements</h5>
-                <p class="card-text">See latest college announcements.</p>
-                <a
-                  href="#"
-                  class="btn btn-primary"
-                  onclick="showAlert('No new announcements.')"
-                  >View Announcements</a
-                >
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card h-100" style="background-color: #5487b341">
-              <div class="card-body">
-                <h5 class="card-title">Timetable</h5>
-                <p class="card-text">Check your class timetable.</p>
-                <a
-                  href="#"
-                  class="btn btn-primary"
-                  onclick="showAlert('Monday: Math, Tuesday: Physics, ...')"
-                  >View Timetable</a
-                >
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card h-100" style="background-color: #5487b341">
-              <div class="card-body">
-                <h5 class="card-title">Results</h5>
-                <p class="card-text">View your exam results.</p>
-                <a
-                  href="#"
-                  class="btn btn-primary"
-                  onclick="showAlert('Results: Math: 85, Physics: 90')"
-                  >View Results</a
-                >
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card h-100" style="background-color: #5487b341">
-              <div class="card-body">
-                <h5 class="card-title">Attendance Grace Request</h5>
-                <p class="card-text">Request grace for attendance shortage.</p>
-                <a
-                  href="#"
-                  class="btn btn-warning"
-                  onclick="showAlert('Attendance grace request submitted!')"
-                  >Request Grace</a
-                >
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card h-100" style="background-color: #5487b341">
-              <div class="card-body">
-                <h5 class="card-title">ID Card Replacement</h5>
-                <p class="card-text">Request a replacement for lost ID card.</p>
-                <a
-                  href="#"
-                  class="btn btn-danger"
-                  onclick="showAlert('ID card replacement request submitted!')"
-                  >Request Replacement</a
-                >
-              </div>
-            </div>
+          <div id="attendanceContent">
+            <!-- We'll fill this with JS -->
           </div>
         </div>
       </div>
     </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const calendarEl = document.getElementById("calendar");
+
+        // Modal elements
+        const modal = document.getElementById("eventModal");
+        const modalTitle = document.getElementById("modalTitle");
+        const eventTitleInput = document.getElementById("eventTitle");
+        const startDateTimeInput = document.getElementById("startDateTime");
+        const endDateTimeInput = document.getElementById("endDateTime");
+        const saveBtn = document.getElementById("saveEventBtn");
+        const deleteBtn = document.getElementById("deleteEventBtn");
+        const cancelBtn = document.getElementById("cancelBtn");
+
+        let selectedDate = null;
+        let selectedEvent = null;
+
+        // Load saved events
+        let myEvents = JSON.parse(localStorage.getItem("myEvents")) || [];
+
+        // ✅ FullCalendar setup
+        let calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: "dayGridMonth",
+          height: "100%",
+          events: myEvents,
+          editable: true,
+
+          dateClick: function (info) {
+            // Example: Pretend this is your attendance data
+            const dummyAttendance = {
+              "2025-08-10": "Present",
+              "2025-08-09": "Absent",
+              "2025-08-08": "Late",
+            };
+
+            const dateStr = info.dateStr;
+            document.getElementById("sidebarDate").textContent = dateStr;
+
+            const status = dummyAttendance[dateStr] || "No record";
+            document.getElementById("attendanceContent").innerHTML = `
+    <p><strong>Status:</strong> ${status}</p>
+  `;
+
+            document.getElementById("attendanceSidebar").classList.add("open");
+
+            document
+              .getElementById("closeSidebar")
+              .addEventListener("click", function () {
+                document
+                  .getElementById("attendanceSidebar")
+                  .classList.remove("open");
+              });
+          },
+
+          eventClick: function (info) {
+            selectedEvent = info.event;
+
+            modalTitle.textContent = "Edit Event";
+            eventTitleInput.value = info.event.title;
+
+            // Format dates for datetime-local input
+            const formatDateTime = (d) => {
+              if (!d) return "";
+              const pad = (n) => (n < 10 ? "0" + n : n);
+              const yyyy = d.getFullYear();
+              const mm = pad(d.getMonth() + 1);
+              const dd = pad(d.getDate());
+              const hh = pad(d.getHours());
+              const min = pad(d.getMinutes());
+              return `${yyyy}-${mm}-${dd}T${hh}:${min}`;
+            };
+
+            startDateTimeInput.value = formatDateTime(info.event.start);
+            endDateTimeInput.value = info.event.end
+              ? formatDateTime(info.event.end)
+              : "";
+
+            deleteBtn.style.display = "inline-block";
+            openModal();
+          },
+        });
+
+        calendar.render();
+
+        // ✅ Open modal
+        function openModal() {
+          modal.style.display = "flex";
+          eventTitleInput.focus();
+        }
+
+        // ✅ Close modal
+        function closeModal() {
+          modal.style.display = "none";
+          selectedDate = null;
+          selectedEvent = null;
+        }
+
+        function generateId() {
+          return "ev-" + Math.random().toString(36).substr(2, 9);
+        }
+        // ✅ Save or update event
+        saveBtn.onclick = function () {
+          const title = eventTitleInput.value.trim();
+          const start = startDateTimeInput.value
+            ? new Date(startDateTimeInput.value).toISOString()
+            : null;
+          const end = endDateTimeInput.value
+            ? new Date(endDateTimeInput.value).toISOString()
+            : null;
+
+          if (!title || !start) {
+            alert("Title and Start date are required!");
+            return;
+          }
+
+          if (selectedEvent) {
+            // Editing existing event
+            const oldTitle = selectedEvent.title;
+
+            selectedEvent.setProp("title", title);
+            selectedEvent.setStart(start);
+            selectedEvent.setEnd(end);
+
+            myEvents = myEvents.map((ev) =>
+              ev.id === selectedEvent.id
+                ? { ...ev, title, start, end, id: ev.id }
+                : ev
+            );
+          } else {
+            // Adding new event
+            const newEvent = { id: generateId(), title, start, end };
+            myEvents.push(newEvent);
+            calendar.addEvent(newEvent);
+          }
+
+          localStorage.setItem("myEvents", JSON.stringify(myEvents));
+          closeModal();
+        };
+
+        // ✅ Delete event
+        deleteBtn.onclick = function () {
+          if (selectedEvent) {
+            if (confirm("Delete this event?")) {
+              selectedEvent.remove();
+              myEvents = myEvents.filter((ev) => ev.id !== selectedEvent.id);
+              localStorage.setItem("myEvents", JSON.stringify(myEvents));
+              closeModal();
+            }
+          }
+        };
+
+        // ✅ Cancel button
+        cancelBtn.onclick = closeModal;
+
+        // ✅ Close modal if click outside content
+        modal.addEventListener("click", function (e) {
+          if (e.target === modal) closeModal();
+        });
+      });
+    </script>
   </body>
 </html>

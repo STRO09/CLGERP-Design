@@ -1,0 +1,101 @@
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ------------------------------------- SIDEBAR ------------------------------------- */
+.sidebar {
+  width: 250px;
+  background: #0c2562;
+  color: #fff;
+}
+
+.sidebar a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  font-size: large;
+  margin-right: 4px;
+  padding: 10px 20px;
+}
+
+.sidebar a:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar .logout-btn {
+  margin-top: auto;
+  padding: 10px 20px;
+  text-align: left;
+  width: 100%;
+  color: #fff;
+  border: none;
+  background: transparent;
+}
+
+.sidebar .logout-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar hr {
+  margin-top: 0;
+  margin-bottom: 20px; /* remove gap above/below hr */
+}
+
+/* ------------------------------------- CALENDAR ------------------------------------- */
+
+#calendar {
+  width: 80%;
+  height: 660px !important;
+  margin: 20px auto;
+  text-decoration: none;
+}
+
+/* -------- toolbar */
+.fc-today-button {
+    background-color: #0c2562  !important;
+}
+
+.fc-scrollgrid-sync-table * {
+  background-color: #fff;
+  text-decoration: none;
+  color: #0c2562;
+}
+
+.fc-scrollgrid-section-header * {
+  background-color: #0c2562;
+  color: #fff;
+  text-decoration: none;
+}
+
+
+/* ------------------------------------- ATTENDANCE SIDEBAR ------------------------------------- */
+#attendanceSidebar {
+  position: fixed;
+  top: 0;
+  right: -350px; /* hidden initially */
+  width: 350px;
+  height: 100%;
+  background: white;
+  box-shadow: -2px 0 8px rgba(0,0,0,0.3);
+  padding: 20px;
+  transition: right 0.3s ease;
+  z-index: 2000;
+}
+
+#attendanceSidebar.open {
+  right: 0;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+}
+
+#attendanceContent {
+  margin-top: 15px;
+}
