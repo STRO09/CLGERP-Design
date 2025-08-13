@@ -1,0 +1,18 @@
+Decided on the techstack to be MYSQL JDBC SERVLETS JSP/JSTLS along with daos, filters and listeners. 
+design pattern to be mvc2. 
+Project build maven.
+
+Wrote bunch of sql queries left some and moved on forward with backend and middleware. 
+had problems with maven. tried to delete the current project created mistakenly in the root Projects folder.
+ended up deleting all projects permanently from disk.
+
+More than enough practice with mysql, changing techstack to hibernate.
+also changing login register system.
+entry will be login page. if student / staff not registered yet, go to find details page search if details are
+on the database or not. 
+then register and then login.
+added another role: admin (use only in admission period to enter student teacher details in the database.)
+
+three roles now: student staff and admin.
+
+In the process of designing frontend.

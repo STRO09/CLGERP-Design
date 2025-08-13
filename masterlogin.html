@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <style>
+    .headline {
+      width: 100%;
+      background-color: rgba(255, 0, 0, 0.226);
+      border-top: 1px solid red;
+      border-bottom: 1px solid red;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .headline span {
+      display: inline-block;
+      animation: scrollText 20s linear infinite;
+    }
+
+    @keyframes scrollText {
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      50% {
+        transform: translateX(-100%);
+      }
+    }
+  </style>
+  <body>
+    <header>
+      <!-- place navbar here -->
+      <div class="mt-5 text-danger headline">
+        <span
+          >Admin page should only be used in the period of admission or staff
+          changes. Major changes may pose a risk to the system. Make changes
+          securely. Unauthorized access will be monitored and reported
+          immediately. Please ensure you log out after completing your tasks.
+          This system is for official use only and all activities are logged for
+          security purposes.</span
+        >
+      </div>
+    </header>
+    <main>
+      <div class="container mt-5">
+        <h2 class="mb-4 text-center">Master login page</h2>
+        <form id="loginForm" class="mx-auto" style="max-width: 400px">
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" required />
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              required
+            />
+          </div>
+          <button type="submit" class="btn btn-primary w-100">Login</button>
+        </form>
+        <div id="result" class="mt-4"></div>
+      </div>
+    </main>
+
+    <script>
+      // Simulated DB (for demo)
+      const users = [
+        {
+          role: "student",
+          name: "John Doe",
+          number: "12345",
+          email: "john@student.com",
+          password: "student123",
+          registered: true,
+        },
+        {
+          role: "admin",
+          name: "Admin User",
+          number: "99999",
+          email: "admin@college.com",
+          password: "admin123",
+          registered: true,
+        },
+      ];
+      // Get role from URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const role = urlParams.get("role") || "student";
+
+      document.getElementById("loginForm").onsubmit = function (e) {
+        e.preventDefault();
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value.trim();
+        const user = users.find(
+          (u) =>
+            u.role === role &&
+            u.email === email &&
+            u.password === password &&
+            u.registered
+        );
+        const resultDiv = document.getElementById("result");
+        if (user) {
+          resultDiv.innerHTML = `
+                <div class="alert alert-success">
+                    Login successful!<br>
+                    <div class="text-center mt-3">
+                        <div class="spinner-border text-success" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                </div>`;
+          setTimeout(() => {
+            if (role == "student") {
+              window.location.href = `student-dashboard.html`;
+            } else {
+              window.location.href = `admin-dashboard.html`;
+            }
+          }, 1000);
+        } else {
+          resultDiv.innerHTML = `
+                  <div class="alert alert-danger">
+                      Invalid credentials or not registered.
+                  </div>
+              `;
+        }
+      };
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

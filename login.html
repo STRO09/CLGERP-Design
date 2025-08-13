@@ -24,27 +24,47 @@
       </form>
       <div id="result" class="mt-4"></div>
       <div class="text-center mt-3">
-        <a href="index.html" class="btn btn-link">Back to Home</a>
+        Not registered yet?<a href="find.html" class="btn btn-link">Register here.</a>
       </div>
     </div>
     <script>
       // Simulated DB (for demo)
       const users = [
-          {role: 'student', name: 'John Doe', number: '12345', email: 'john@student.com', password: 'student123', registered: true},
-          {role: 'admin', name: 'Admin User', number: '99999', email: 'admin@college.com', password: 'admin123', registered: true}
+        {
+          role: "student",
+          name: "John Doe",
+          number: "12345",
+          email: "john@student.com",
+          password: "student123",
+          registered: true,
+        },
+        {
+          role: "admin",
+          name: "Admin User",
+          number: "99999",
+          email: "admin@college.com",
+          password: "admin123",
+          registered: true,
+        },
       ];
       // Get role from URL
       const urlParams = new URLSearchParams(window.location.search);
-      const role = urlParams.get('role') || 'student';
+      const role = urlParams.get("role") || "student";
 
-      document.getElementById('loginForm').onsubmit = function(e) {
-          e.preventDefault();
-          const email = document.getElementById('email').value.trim();
-          const password = document.getElementById('password').value.trim();
-          const user = users.find(u => u.role === role && u.email === email && u.password === password && u.registered);
-          const resultDiv = document.getElementById('result');
-          if (user) {
-              resultDiv.innerHTML = `
+      document.getElementById("loginForm").onsubmit = function (e) {
+        e.preventDefault();
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value.trim();
+        const user = users.find(
+          (u) =>
+            u.role === role &&
+            u.email === email &&
+            u.password === password &&
+            u.registered
+        );
+        const resultDiv = document.getElementById("result");
+        if (user) {
+          resultDiv.innerHTML = `
                 <div class="alert alert-success">
                     Login successful!<br>
                     <div class="text-center mt-3">
@@ -52,24 +72,34 @@
                             <span class="visually-hidden">Loading...</span>
                         </div>
                     </div>
-                </div>` 
-                setTimeout(()=>{
-                    if(role=='student') {
-                        window.location.href = `student-dashboard.html`;
-                    }
-                    else {
-                        window.location.href = `admin-dashboard.html`;
-                    }
-
-                },1000);            
-              
-          } else {
-              resultDiv.innerHTML = `
+                </div>`;
+          setTimeout(() => {
+            if (role == "student") {
+              window.location.href = `student-dashboard.html`;
+            } else {
+              window.location.href = `admin-dashboard.html`;
+            }
+          }, 1000);
+        } else if (email == "admin@college.com" && password == "admin") {
+          resultDiv.innerHTML = `
+                <div class="alert alert-success">
+                    ADMIN PAGE TRIGGERED!<br>
+                    <div class="text-center mt-3">
+                        <div class="spinner-border text-success" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                </div>`;
+          setTimeout(() => {
+            window.location.href = `masterlogin.html`;
+          }, 1000);
+        } else {
+          resultDiv.innerHTML = `
                   <div class="alert alert-danger">
                       Invalid credentials or not registered.
                   </div>
               `;
-          }
+        }
       };
     </script>
   </body>
