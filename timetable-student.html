@@ -8,7 +8,7 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <nav
@@ -36,7 +36,9 @@
         <a href="attendance-student.html" onclick="showAlert('Attendance: 92%')"
           >📊 Attendance</a
         >
-        <a href="announcements-student.html" onclick="showAlert('No new announcements.')"
+        <a
+          href="announcements-student.html"
+          onclick="showAlert('No new announcements.')"
           >📢 Announcements</a
         >
         <a
@@ -45,7 +47,9 @@
           onclick="showAlert('Monday: Math, Tuesday: Physics...')"
           >📅 Timetable</a
         >
-        <a href="results-student.html" onclick="showAlert('Results: Math: 85, Physics: 90')"
+        <a
+          href="results-student.html"
+          onclick="showAlert('Results: Math: 85, Physics: 90')"
           >📜 Results</a
         >
 
@@ -61,109 +65,306 @@
       </div>
 
       <div class="container mt-4 px-5">
-        <h2 class="mt-2 mb-5 text-center">Student Dashboard</h2>
+        <div class="container timetable-container mt-4">
+          <h2 class="text-center mb-4">Weekly Lecture & Practical Schedule</h2>
 
-        <div class="row g-4">
-          <div class="col-md-12 text-center">
-            <div class="card h-100 p-3" style="background-color: #5487b341">
-              <div class="card-body">
-                <h5 class="card-title">Student Name</h5>
-                <p class="card-text">Student info</p>
-                <a
-                  href="#"
-                  class="btn btn-primary"
-                  onclick="showAlert('Attendance: 92%')"
-                  >Edit Info</a
-                >
-              </div>
+          <!-- Filters -->
+          <div class="row mb-3">
+            <div class="col-md-4">
+              <label class="form-label">Select Branch:</label>
+              <select id="branchSelect" class="form-select">
+                <option value="CSE">Computer Science (CSE)</option>
+                <option value="ECE">Electronics (ECE)</option>
+                <option value="ME">Mechanical (ME)</option>
+                <option value="CIVIL">Civil Engineering</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Select Semester:</label>
+              <select id="semesterSelect" class="form-select">
+                <option value="Sem1">Semester 1</option>
+                <option value="Sem3">Semester 3</option>
+                <option value="Sem5">Semester 5</option>
+                <option value="Sem7">Semester 7</option>
+              </select>
+            </div>
+            <div class="col-md-4 d-flex align-items-end">
+              <button id="myTimetableBtn" class="btn btn-primary w-100">
+                My Timetable
+              </button>
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="card h-100" style="background-color: #5487b341">
-              <div class="card-body">
-                <h5 class="card-title">Attendance</h5>
-                <p class="card-text">View your attendance record.</p>
-                <a
-                  href="#"
-                  class="btn btn-primary"
-                  onclick="showAlert('Attendance: 92%')"
-                  >View Attendance</a
-                >
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card h-100" style="background-color: #5487b341">
-              <div class="card-body">
-                <h5 class="card-title">Announcements</h5>
-                <p class="card-text">See latest college announcements.</p>
-                <a
-                  href="#"
-                  class="btn btn-primary"
-                  onclick="showAlert('No new announcements.')"
-                  >View Announcements</a
-                >
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card h-100" style="background-color: #5487b341">
-              <div class="card-body">
-                <h5 class="card-title">Timetable</h5>
-                <p class="card-text">Check your class timetable.</p>
-                <a
-                  href="#"
-                  class="btn btn-primary"
-                  onclick="showAlert('Monday: Math, Tuesday: Physics, ...')"
-                  >View Timetable</a
-                >
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card h-100" style="background-color: #5487b341">
-              <div class="card-body">
-                <h5 class="card-title">Results</h5>
-                <p class="card-text">View your exam results.</p>
-                <a
-                  href="#"
-                  class="btn btn-primary"
-                  onclick="showAlert('Results: Math: 85, Physics: 90')"
-                  >View Results</a
-                >
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card h-100" style="background-color: #5487b341">
-              <div class="card-body">
-                <h5 class="card-title">Attendance Grace Request</h5>
-                <p class="card-text">Request grace for attendance shortage.</p>
-                <a
-                  href="#"
-                  class="btn btn-warning"
-                  onclick="showAlert('Attendance grace request submitted!')"
-                  >Request Grace</a
-                >
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card h-100" style="background-color: #5487b341">
-              <div class="card-body">
-                <h5 class="card-title">ID Card Replacement</h5>
-                <p class="card-text">Request a replacement for lost ID card.</p>
-                <a
-                  href="#"
-                  class="btn btn-danger"
-                  onclick="showAlert('ID card replacement request submitted!')"
-                  >Request Replacement</a
-                >
-              </div>
-            </div>
+
+          <!-- Timetable Table -->
+          <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+              <thead class="table-dark">
+                <tr>
+                  <th>Day</th>
+                  <th>9:00 - 10:00</th>
+                  <th>10:00 - 11:00</th>
+                  <th>11:00 - 12:00</th>
+                  <th>12:00 - 1:00</th>
+                  <th>1:00 - 2:00</th>
+                  <th>2:00 - 3:00</th>
+                  <th>3:00 - 4:00</th>
+                </tr>
+              </thead>
+              <tbody id="timetableBody">
+                <!-- Rows will be injected by JS -->
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
     </div>
+
+    <script>
+      // Sample timetable data for demonstration
+      const timetables = {
+        CSE_Sem1: [
+          [
+            "Monday",
+            "Maths",
+            "Physics",
+            "Programming",
+            "English",
+            "LUNCH",
+            "Lab (C Programming)",
+            "Lab (C Programming)",
+          ],
+          [
+            "Tuesday",
+            "Chemistry",
+            "Maths",
+            "Physics",
+            "Electronics",
+            "LUNCH",
+            "Workshop",
+            "Workshop",
+          ],
+          [
+            "Wednesday",
+            "Maths",
+            "Physics",
+            "Programming",
+            "English",
+            "LUNCH",
+            "Lab (Electronics)",
+            "Lab (Electronics)",
+          ],
+          [
+            "Thursday",
+            "Maths",
+            "Chemistry",
+            "Programming",
+            "English",
+            "LUNCH",
+            "Library",
+            "Sports",
+          ],
+          [
+            "Friday",
+            "Maths",
+            "Physics",
+            "Programming",
+            "English",
+            "LUNCH",
+            "Project Work",
+            "Project Work",
+          ],
+        ],
+        ECE_Sem3: [
+          [
+            "Monday",
+            "Signals",
+            "Maths",
+            "Digital Electronics",
+            "Control Systems",
+            "LUNCH",
+            "Lab (Digital)",
+            "Lab (Digital)",
+          ],
+          [
+            "Tuesday",
+            "Maths",
+            "Signals",
+            "Electromagnetics",
+            "English",
+            "LUNCH",
+            "Workshop",
+            "Workshop",
+          ],
+          [
+            "Wednesday",
+            "Control Systems",
+            "Signals",
+            "Digital Electronics",
+            "Maths",
+            "LUNCH",
+            "Library",
+            "Sports",
+          ],
+          [
+            "Thursday",
+            "Signals",
+            "Digital Electronics",
+            "Maths",
+            "Control Systems",
+            "LUNCH",
+            "Lab (Microprocessor)",
+            "Lab (Microprocessor)",
+          ],
+          [
+            "Friday",
+            "Maths",
+            "Signals",
+            "Digital Electronics",
+            "Control Systems",
+            "LUNCH",
+            "Project",
+            "Project",
+          ],
+        ],
+        ME_Sem5: [
+          [
+            "Monday",
+            "Thermodynamics",
+            "Fluid Mechanics",
+            "Machine Design",
+            "Vibrations",
+            "LUNCH",
+            "Lab (CAD)",
+            "Lab (CAD)",
+          ],
+          [
+            "Tuesday",
+            "Vibrations",
+            "Thermodynamics",
+            "Fluid Mechanics",
+            "English",
+            "LUNCH",
+            "Workshop",
+            "Workshop",
+          ],
+          [
+            "Wednesday",
+            "Machine Design",
+            "Thermodynamics",
+            "Vibrations",
+            "Fluid Mechanics",
+            "LUNCH",
+            "Library",
+            "Sports",
+          ],
+          [
+            "Thursday",
+            "Thermodynamics",
+            "Machine Design",
+            "Vibrations",
+            "Fluid Mechanics",
+            "LUNCH",
+            "Lab (Robotics)",
+            "Lab (Robotics)",
+          ],
+          [
+            "Friday",
+            "Thermodynamics",
+            "Vibrations",
+            "Machine Design",
+            "Fluid Mechanics",
+            "LUNCH",
+            "Project",
+            "Project",
+          ],
+        ],
+        CIVIL_Sem7: [
+          [
+            "Monday",
+            "Structural Engg",
+            "Concrete Tech",
+            "Soil Mechanics",
+            "Hydrology",
+            "LUNCH",
+            "Lab (Concrete)",
+            "Lab (Concrete)",
+          ],
+          [
+            "Tuesday",
+            "Soil Mechanics",
+            "Structural Engg",
+            "Concrete Tech",
+            "English",
+            "LUNCH",
+            "Workshop",
+            "Workshop",
+          ],
+          [
+            "Wednesday",
+            "Hydrology",
+            "Structural Engg",
+            "Concrete Tech",
+            "Soil Mechanics",
+            "LUNCH",
+            "Library",
+            "Sports",
+          ],
+          [
+            "Thursday",
+            "Structural Engg",
+            "Concrete Tech",
+            "Soil Mechanics",
+            "Hydrology",
+            "LUNCH",
+            "Lab (Surveying)",
+            "Lab (Surveying)",
+          ],
+          [
+            "Friday",
+            "Concrete Tech",
+            "Structural Engg",
+            "Soil Mechanics",
+            "Hydrology",
+            "LUNCH",
+            "Project",
+            "Project",
+          ],
+        ],
+      };
+
+      const branchSelect = document.getElementById("branchSelect");
+      const semesterSelect = document.getElementById("semesterSelect");
+      const timetableBody = document.getElementById("timetableBody");
+      const myTimetableBtn = document.getElementById("myTimetableBtn");
+
+      myTimetableBtn.addEventListener("click", () => {
+        branchSelect.value = "CSE";
+        semesterSelect.value = "Sem1";
+        loadTimetable();
+      });
+
+      function loadTimetable() {
+        const branch = branchSelect.value;
+        const semester = semesterSelect.value;
+        const key = `${branch}_${semester}`;
+        const data = timetables[key] || [];
+        timetableBody.innerHTML = "";
+        data.forEach((row) => {
+          const tr = document.createElement("tr");
+          row.forEach((cell) => {
+            const td = document.createElement("td");
+            td.textContent = cell;
+            tr.appendChild(td);
+          });
+          timetableBody.appendChild(tr);
+        });
+      }
+
+      branchSelect.addEventListener("change", loadTimetable);
+      semesterSelect.addEventListener("change", loadTimetable);
+
+      // Load default timetable
+      loadTimetable();
+    </script>
   </body>
 </html>
