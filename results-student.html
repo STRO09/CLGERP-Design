@@ -8,7 +8,13 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
+
+    <style>
+      .accordion {
+        --bs-accordion-active-bg: #5487b341; /* your color */
+      }
+    </style>
   </head>
   <body>
     <nav
@@ -66,109 +72,133 @@
       </div>
 
       <div class="container mt-4 px-5">
-        <h2 class="mt-2 mb-5 text-center">Student Dashboard</h2>
+        <h2 class="mt-2 mb-5 text-center">My Results</h2>
 
-        <div class="row g-4">
-          <div class="col-md-12 text-center">
-            <div class="card h-100 p-3" style="background-color: #5487b341">
-              <div class="card-body">
-                <h5 class="card-title">Student Name</h5>
-                <p class="card-text">Student info</p>
-                <a
-                  href="#"
-                  class="btn btn-primary"
-                  onclick="showAlert('Attendance: 92%')"
-                  >Edit Info</a
-                >
+        <!-- Student Info Card -->
+        <div class="card p-3 mb-4" style="background-color: #5487b341">
+          <div class="card-body text-center">
+            <h5 class="card-title">John Doe</h5>
+            <p class="card-text mb-0">Roll No: 21CS001</p>
+            <p class="card-text">Course: B.Sc. Computer Science | Year: 3rd</p>
+          </div>
+        </div>
+
+        <!-- Semester Results Accordion -->
+        <div class="accordion" id="resultsAccordion">
+          <!-- Semester 1 -->
+          <div class="accordion-item" style="border: none">
+            <h2 class="accordion-header" id="sem1Heading">
+              <button
+                class="accordion-button"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#sem1"
+                aria-expanded="true"
+              >
+                Semester 1 Results
+              </button>
+            </h2>
+            <div
+              id="sem1"
+              class="accordion-collapse collapse show"
+              data-bs-parent="#resultsAccordion"
+            >
+              <div class="accordion-body">
+                <table class="table table-striped table-bordered">
+                  <thead class="table-dark">
+                    <tr>
+                      <th>Subject</th>
+                      <th>Marks</th>
+                      <th>Grade</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Mathematics</td>
+                      <td>85</td>
+                      <td>A</td>
+                    </tr>
+                    <tr>
+                      <td>Physics</td>
+                      <td>90</td>
+                      <td>A+</td>
+                    </tr>
+                    <tr>
+                      <td>English</td>
+                      <td>78</td>
+                      <td>B+</td>
+                    </tr>
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <th>Total</th>
+                      <th>253 / 300</th>
+                      <th>84.3%</th>
+                    </tr>
+                  </tfoot>
+                </table>
               </div>
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="card h-100" style="background-color: #5487b341">
-              <div class="card-body">
-                <h5 class="card-title">Attendance</h5>
-                <p class="card-text">View your attendance record.</p>
-                <a
-                  href="#"
-                  class="btn btn-primary"
-                  onclick="showAlert('Attendance: 92%')"
-                  >View Attendance</a
-                >
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card h-100" style="background-color: #5487b341">
-              <div class="card-body">
-                <h5 class="card-title">Announcements</h5>
-                <p class="card-text">See latest college announcements.</p>
-                <a
-                  href="#"
-                  class="btn btn-primary"
-                  onclick="showAlert('No new announcements.')"
-                  >View Announcements</a
-                >
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card h-100" style="background-color: #5487b341">
-              <div class="card-body">
-                <h5 class="card-title">Timetable</h5>
-                <p class="card-text">Check your class timetable.</p>
-                <a
-                  href="#"
-                  class="btn btn-primary"
-                  onclick="showAlert('Monday: Math, Tuesday: Physics, ...')"
-                  >View Timetable</a
-                >
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card h-100" style="background-color: #5487b341">
-              <div class="card-body">
-                <h5 class="card-title">Results</h5>
-                <p class="card-text">View your exam results.</p>
-                <a
-                  href="#"
-                  class="btn btn-primary"
-                  onclick="showAlert('Results: Math: 85, Physics: 90')"
-                  >View Results</a
-                >
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card h-100" style="background-color: #5487b341">
-              <div class="card-body">
-                <h5 class="card-title">Attendance Grace Request</h5>
-                <p class="card-text">Request grace for attendance shortage.</p>
-                <a
-                  href="#"
-                  class="btn btn-warning"
-                  onclick="showAlert('Attendance grace request submitted!')"
-                  >Request Grace</a
-                >
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card h-100" style="background-color: #5487b341">
-              <div class="card-body">
-                <h5 class="card-title">ID Card Replacement</h5>
-                <p class="card-text">Request a replacement for lost ID card.</p>
-                <a
-                  href="#"
-                  class="btn btn-danger"
-                  onclick="showAlert('ID card replacement request submitted!')"
-                  >Request Replacement</a
-                >
+
+          <!-- Semester 2 -->
+          <div class="accordion-item" style="border: none">
+            <h2 class="accordion-header" id="sem2Heading">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#sem2"
+              >
+                Semester 2 Results
+              </button>
+            </h2>
+            <div
+              id="sem2"
+              class="accordion-collapse collapse"
+              data-bs-parent="#resultsAccordion"
+            >
+              <div class="accordion-body">
+                <table class="table table-striped table-bordered">
+                  <thead>
+                    <tr>
+                      <th>Subject</th>
+                      <th>Marks</th>
+                      <th>Grade</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Chemistry</td>
+                      <td>82</td>
+                      <td>A</td>
+                    </tr>
+                    <tr>
+                      <td>Biology</td>
+                      <td>76</td>
+                      <td>B+</td>
+                    </tr>
+                    <tr>
+                      <td>Computer Science</td>
+                      <td>88</td>
+                      <td>A+</td>
+                    </tr>
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <th>Total</th>
+                      <th>246 / 300</th>
+                      <th>82%</th>
+                    </tr>
+                  </tfoot>
+                </table>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
